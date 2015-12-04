@@ -47,18 +47,11 @@ public class Application {
         return true;
     }
 
-    public static boolean isPalindrome2(String value) {
-        String s = value.replaceAll("([^A-Za-z0-9])+","").toLowerCase();
-        for (int i = 0; i < s.length()/2; i++)
-        {
-            if (s.charAt(i) != s.charAt(s.length()-i-1)) return false;
-        }
-        return true;
-    }
-
 
     public static String nameCountPairs(String fileName) throws IOException {
-        return nameCountPairs(Files.lines(Paths.get(fileName)));
+        try (Stream<String> lines = Files.lines(Paths.get(fileName))) {
+            return nameCountPairs(lines);
+        }
     }
 
     public static String nameCountPairs(Stream<String> lines) {
