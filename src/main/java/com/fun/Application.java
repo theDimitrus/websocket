@@ -58,17 +58,17 @@ public class Application {
         class Tuple<T1,T2> {
             final T1 _1;
             final T2 _2;
-            public Tuple(T1 _1, T2 _2)
-            {
+            public Tuple(T1 _1, T2 _2) {
                 this._1 = _1;
                 this._2 = _2;
             }
+
             // equals, hashCode ..
         }
 
          return lines
                 .map(line -> line.split(","))
-                .map(line -> new Tuple<>(line[0], Integer.parseInt(line[1])))
+                .map(line -> new Tuple<>(line[0].trim(), Integer.parseInt(line[1])))
                 .collect(Collectors.groupingBy(t -> t._1,
                          Collectors.summingInt(t -> t._2)))
                 .entrySet()
